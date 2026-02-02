@@ -1,165 +1,351 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Anshad | Alfayiz Agency</title>
+    
+    <!-- Premium Fonts: 'Outfit' for modern luxury -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F2D06B 50%, #997B28 100%);
+            --glass-bg: rgba(20, 20, 20, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-dark: #050505;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* --- ANIMATED BACKGROUND --- */
+        .ambient-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: #D4AF37; /* Gold */
+            top: -50px;
+            left: -50px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #2a2a2a; /* Deep Grey */
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* --- GLASS CARD --- */
+        .glass-card {
+            width: 90%;
+            max-width: 400px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            /* Entrance + Floating Animation */
+            animation: fadeUp 0.8s ease-out, cardFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- PROFILE --- */
+        .profile-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Pulsing Glow */
+        .profile-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border-radius: 50%;
+            background: var(--gold-gradient);
+            z-index: 1;
+            opacity: 0.3;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+            /* Text Shimmer Effect */
+            background: linear-gradient(to right, #ffffff, #999999, #ffffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 4s linear infinite;
+        }
+
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
+
+        .title {
+            color: var(--gold);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .agency {
+            color: #888;
+            font-size: 13px;
+            margin-top: 5px;
+            margin-bottom: 35px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden; /* Vital for shine effect */
+        }
+
+        /* The "Sheen" Swipe Effect */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            letter-spacing: 0.5px;
+        }
+
+        /* Primary Gold Button */
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #000;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            border: none;
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Glass Buttons */
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .btn i {
+            margin-right: 12px;
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover i {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        /* --- FOOTER (LOGO) --- */
+        .footer {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .footer:hover {
+            opacity: 1;
+        }
+
+        .powered-by {
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer-logo {
+            height: 30px; /* Adjust size here */
+            width: auto;
+            /* Filter to make logo white/gold if needed, or upload a PNG */
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); 
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Anshad | Alfayiz Agency&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #0a0a0a; /* Deep Black */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Helvetica Neue', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* The Header Background */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.header-bg {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #D4AF37 0%, #a88825 100%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 150px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom-left-radius: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-bottom-right-radius: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: -1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 80px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Profile Photo Styling */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.profile-img {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 140px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 140px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 4px solid #0a0a0a; /* Matches body bg to look like cutout */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 20px rgba(0,0,0,0.5);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>object-fit: cover;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.name {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.title {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #D4AF37; /* Gold Text */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.agency {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #888;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Button Styling */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-custom {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 350px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 15px auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: 0.2s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Gold Button (Primary) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-gold {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #D4AF37;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #000;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-gold:active { transform: scale(0.98); }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Outline Buttons (Secondary) */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-dark-outline {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #1a1a1a;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #333;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-dark-outline:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-color: #D4AF37;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #D4AF37;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.icon-box {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.footer {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #444;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="header-bg"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;img src="profile.jpg" alt="Profile" class="profile-img"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="name"&gt;Anshad&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="title"&gt;Lead Designer&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="agency"&gt;ALFAYIZ GRAPHICS&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="Anshad_Ep.vcf" class="btn btn-custom btn-gold"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="icon-box"&gt;&lt;i class="fas fa-user-plus"&gt;&lt;/i&gt;&lt;/span&gt; Save to Contacts</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="https://wa.me/971500000000" class="btn btn-custom btn-dark-outline"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="icon-box"&gt;&lt;i class="fab fa-whatsapp"&gt;&lt;/i&gt;&lt;/span&gt; WhatsApp Me</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="https://alfayiz.com" class="btn btn-custom btn-dark-outline"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="icon-box"&gt;&lt;i class="fas fa-globe"&gt;&lt;/i&gt;&lt;/span&gt; Visit Website</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a href="mailto:anshad@alfayiz.com" class="btn btn-custom btn-dark-outline"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="icon-box"&gt;&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;&lt;/span&gt; Email Me</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/a&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="fas fa-fingerprint"&gt;&lt;/i&gt; Powered by Alfayiz Smart Cards</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+    <!-- Animated Background -->
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="glass-card">
+        
+        <!-- Profile Picture -->
+        <div class="profile-wrapper">
+            <!-- Ensure this file name matches exactly what is in GitHub -->
+            <img src="profile.jpg" alt="Anshad" class="profile-img">
+        </div>
+
+        <!-- Text Details -->
+        <h1>Anshad</h1>
+        <div class="title">Lead Designer</div>
+        <div class="agency">ALFAYIZ GRAPHICS</div>
+
+        <!-- Buttons -->
+        <div class="btn-container">
+            <!-- Save Contact (Primary) -->
+            <!-- Ensure this filename matches exactly what is in GitHub -->
+            <a href="Anshad_Ep.vcf" class="btn btn-gold">
+                <i class="fas fa-address-card"></i> Save Contact
+            </a>
+
+            <!-- Social Links -->
+            <a href="https://wa.me/971500000000" class="btn btn-glass">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+
+            <a href="https://alfayiz.com" class="btn btn-glass">
+                <i class="fas fa-globe"></i> Visit Website
+            </a>
+            
+            <a href="mailto:anshad@alfayiz.com" class="btn btn-glass">
+                <i class="fas fa-envelope"></i> Email Me
+            </a>
+        </div>
+
+        <!-- Updated Footer with Logo -->
+        <div class="footer">
+            <div class="powered-by">Powered by</div>
+            <!-- UPLOAD YOUR LOGO AS: alfayiz-logo.png -->
+            <img src="alfayiz-logo.png" alt="Alfayiz Digital" class="footer-logo">
+        </div>
+
+    </div>
+
 </body>
 </html>
